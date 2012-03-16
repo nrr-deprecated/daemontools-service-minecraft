@@ -1,0 +1,5 @@
+#! /bin/sh
+
+exec envdir ./env sh -c '
+	exec setuidgid $USER $JAVA_HOME/bin/java -jar ./root/minecraft_server.jar -Xmx1024m -Xms1024m -XX:MaxPermGen=512m nogui
+'
