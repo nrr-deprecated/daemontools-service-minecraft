@@ -1,5 +1,6 @@
 #! /bin/sh
 
 exec envdir ./env sh -c '
-	exec setuidgid $USER $JAVA_HOME/bin/java -Xmx1024m -Xms1024m -XX:MaxPermGen=512m -jar ./root/minecraft_server.jar nogui
+	export JAVA_OPTS="${MAX_HEAP+"-Xmx$MAX_HEAP"} ${MIN_HEAP+"-Xms$MIN_HEAP"} $JAVA_OPTS"
+	exec setuidgid $USER $JAVA_HOME/bin/java $JAVA_OPTS -XX:MaxPermGen=512m -jar ./root/minecraft_server.jar nogui
 '
