@@ -1,5 +1,7 @@
 #! /bin/sh
 
+# exec 2>&1 \
 exec envdir ./env sh -c '
-	exec setuidgid $USER $JAVA_HOME/bin/java -Xmx1024m -Xms1024m -XX:MaxPermGen=512m -jar ./root/minecraft_server.jar nogui
+        cd $MINECRAFT_HOME 
+        exec setuidgid $USER screen -A -m -d -S minecraft $JAVA_HOME/bin/java -Xmx$MAX_HEAP -Xms$MIN_HEAP -XX:MaxPermSize=$PERM_GEN -server -jar ./minecraft_server.jar nogui
 '
